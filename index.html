@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Interactif</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <img src="rdm.png" alt="Logo RDM" class="corner-logo logo-left" />
+    <img src="insap.png" alt="Logo INSAP" class="corner-logo logo-right" />
+
+    <main class="container">
+      <header class="app-header">
+        <div>
+          <p class="eyebrow">Challenge archeologique</p>
+          <h1>Quiz Interactif</h1>
+        </div>
+        <button id="settings-btn" class="icon-btn" type="button" aria-label="Ouvrir les parametres">
+          <i class="fa-solid fa-gear" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <section id="start-screen" class="card">
+        <div class="start-content">
+          <p class="start-kicker">30 questions</p>
+          <p class="start-text">Sauriez-vous répondre?</p>
+          <label for="level-select">Niveau</label>
+          <select id="level-select">
+            <option value="1">Facile</option>
+            <option value="2" selected>Moyen</option>
+            <option value="3">Avance</option>
+          </select>
+          <button id="start-btn" type="button"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Lancer le quiz</span></button>
+        </div>
+      </section>
+
+      <section id="quiz-screen" class="card hidden">
+        <div id="question-statuses" class="question-statuses" aria-label="Progression des questions"></div>
+        <div class="quiz-top">
+          <span id="progress">Question 1/1</span>
+          <span id="score">Score: 0</span>
+          <span id="streak">Streak: 0</span>
+          <span id="timer">Temps: 00:00</span>
+        </div>
+
+        <h2 id="question-text">Chargement...</h2>
+        <div id="answers" class="answers"></div>
+
+        <div class="actions">
+          <button id="next-btn" type="button" disabled><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>Suivante</span></button>
+        </div>
+      </section>
+
+      <section id="result-screen" class="card hidden">
+        <h2>Resultat</h2>
+        <p id="victory-message" class="victory-message"></p>
+        <p id="final-score"></p>
+        <label for="player-name-input">Ton nom</label>
+        <input id="player-name-input" type="text" maxlength="30" placeholder="Ex: Rachid" />
+        <button id="save-score-btn" type="button"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>Enregistrer mon score</span></button>
+          <p id="save-status" class="status"></p>
+        <h3>Meilleurs scores</h3>
+        <ol id="best-scores" class="best-scores"></ol>
+        <button id="restart-btn" type="button"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i><span>Rejouer</span></button>
+      </section>
+
+      <p id="status" class="status"></p>
+    </main>
+
+    <dialog id="settings-modal" class="modal-overlay" aria-labelledby="settings-title">
+      <div class="modal-card">
+        <div class="modal-head">
+          <h2 id="settings-title">Parametres</h2>
+          <button id="close-settings-btn" class="icon-btn icon-btn-small" type="button" aria-label="Fermer les parametres"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+        </div>
+        <label for="time-input">Temps par question (secondes)</label>
+        <input id="time-input" type="number" min="5" max="120" step="5" value="20" />
+        <p class="modal-note">Valeur recommandee: 20 a 30 secondes.</p>
+        <div class="modal-actions">
+          <button id="save-settings-btn" type="button">Appliquer</button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

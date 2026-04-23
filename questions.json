@@ -1,0 +1,186 @@
+[
+  {
+    "question": "Quel outil est utilise pour mesurer les vestiges ?",
+    "choices": ["La truelle", "Le metre", "Le pinceau"],
+    "answerIndex": 1,
+    "lv" : 1
+  },
+  {
+    "question": "Que fait un archeologue ?",
+    "choices": ["Il construit des maisons", "Il etudie le passe", "Il enseigne les mathematiques"],
+    "answerIndex": 1,
+    "lv" : 1
+  },
+  {
+    "question": "Ou travaille un archeologue ?",
+    "choices": ["Dans un chantier de fouilles", "Dans une banque", "Dans une ecole uniquement"],
+    "answerIndex": 0,
+    "lv" : 1
+  },
+  {
+    "question": "Quel objet est souvent trouve dans les fouilles ?",
+    "choices": ["Telephone", "Poterie", "Ordinateur"],
+    "answerIndex": 1,
+    "lv" : 1
+  },
+  {
+    "question": "Que signifie fouille archeologique ?",
+    "choices": ["Creuser pour trouver des objets anciens", "Construire une route", "Nettoyer une maison"],
+    "answerIndex": 0,
+    "lv" : 1
+  },
+  {
+    "question": "Quel materiau est souvent retrouve ?",
+    "choices": ["Plastique", "Pierre", "Verre moderne"],
+    "answerIndex": 1,
+    "lv" : 1
+  },
+  {
+    "question": "Comment les archeologues nettoient-ils les objets ?",
+    "choices": ["Avec un marteau", "Avec un pinceau", "Avec de l'eau forte"],
+    "answerIndex": 1,
+    "lv" : 1
+
+  },
+  {
+    "question": "Que trouve-t-on dans une tombe ancienne ?",
+    "choices": ["Des vetements modernes", "Des objets anciens", "Des voitures"],
+    "answerIndex": 1,
+    "lv" : 1
+
+  },
+  {
+    "question": "A quoi sert une carte archeologique ?",
+    "choices": ["Trouver des magasins", "Localiser des sites anciens", "Regarder la meteo"],
+    "answerIndex": 1,
+    "lv" : 1
+
+  },
+  {
+    "question": "Que signifie site archeologique ?",
+    "choices": ["Un terrain de sport", "Un lieu avec des vestiges anciens", "Un hopital"],
+    "answerIndex": 1,
+    "lv" : 1
+
+  },
+  {
+    "question": "Quel site marocain est une ville romaine celebre ?",
+    "choices": ["Volubilis", "Marrakech", "Agadir"],
+    "answerIndex": 0,
+    "lv" : 2
+  },
+  {
+    "question": "Quel outil sert a creuser precisement ?",
+    "choices": ["La truelle", "La pelle mecanique", "La pioche lourde"],
+    "answerIndex": 0,
+    "lv" : 2
+  },
+  {
+    "question": "Que permet la datation ?",
+    "choices": ["Trouver un tresor", "Connaitre l'age d'un objet", "Nettoyer un site"],
+    "answerIndex": 1,
+    "lv" : 2
+  },
+  {
+    "question": "Que signifie patrimoine ?",
+    "choices": ["Les biens modernes", "Les richesses culturelles heritees", "Les outils de travail"],
+    "answerIndex": 1,
+    "lv" : 2
+  },
+  {
+    "question": "Quelle civilisation a laisse Volubilis ?",
+    "choices": ["Romaine", "Americaine", "Chinoise"],
+    "answerIndex": 0,
+    "lv" : 2
+  },
+  {
+    "question": "Pourquoi protege-t-on les sites archeologiques ?",
+    "choices": ["Pour les vendre", "Pour preserver l'histoire", "Pour construire dessus"],
+    "answerIndex": 1,
+    "lv" : 2
+  },
+  {
+    "question": "Que fait un archeologue apres une decouverte ?",
+    "choices": ["Il la jette", "Il l'etudie", "Il la vend"],
+    "answerIndex": 1,
+    "lv" : 2
+  },
+  {
+    "question": "Quel type d'objet peut etre trouve ?",
+    "choices": ["Bijoux anciens", "Televisions", "Voitures"],
+    "answerIndex": 0,
+    "lv" : 2
+  },
+  {
+    "question": "Qu'est-ce qu'une stratigraphie ?",
+    "choices": ["Une carte", "Une etude des couches de sol", "Une machine"],
+    "answerIndex": 1,
+    "lv" : 2
+  },
+  {
+    "question": "Que represente une mosaique ?",
+    "choices": ["Un tableau moderne", "Une image faite de petites pierres", "Une carte"],
+    "answerIndex": 1,
+    "lv" : 2
+  },
+  {
+    "question": "Quel site marocain est connu pour ses tombes antiques ?",
+    "choices": ["Chellah", "Tanger", "Oujda"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Quelle periode vient avant l'histoire ecrite ?",
+    "choices": ["Prehistoire", "Moyen Age", "Moderne"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Quel materiau conserve bien les objets ?",
+    "choices": ["Sable", "Eau", "Air"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Pourquoi les objets sont-ils fragiles ?",
+    "choices": ["A cause du temps", "A cause de la lumiere", "A cause du bruit"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Quel outil est utilise pour dessiner les decouvertes ?",
+    "choices": ["Stylo et carnet", "Marteau", "Pelle"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Que signifie conservation ?",
+    "choices": ["Detruire", "Proteger", "Vendre"],
+    "answerIndex": 1,
+    "lv" : 3
+  },
+  {
+    "question": "Quel element aide a comprendre une civilisation ?",
+    "choices": ["Ses objets", "Ses routes modernes", "Ses voitures"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Quelle science est liee a l'archeologie ?",
+    "choices": ["Geologie", "Sport", "Cuisine"],
+    "answerIndex": 0,
+    "lv" : 3
+  },
+  {
+    "question": "Pourquoi documenter les fouilles ?",
+    "choices": ["Pour oublier", "Pour garder une trace", "Pour vendre"],
+    "answerIndex": 1,
+    "lv" : 3
+  },
+  {
+    "question": "Que fait l'INSAP ?",
+    "choices": ["Etudie et protege le patrimoine", "Vend des produits", "Construit des maisons"],
+    "answerIndex": 0,
+    "lv" : 3
+  }
+]
