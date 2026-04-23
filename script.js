@@ -1,6 +1,8 @@
 const startScreen = document.getElementById("start-screen");
 const quizScreen = document.getElementById("quiz-screen");
 const resultScreen = document.getElementById("result-screen");
+const quizMeta = document.getElementById("quiz-meta");
+const appTitle = document.getElementById("app-title");
 
 const startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
@@ -28,6 +30,7 @@ const bestScoresList = document.getElementById("best-scores");
 const statusLabel = document.getElementById("status");
 
 const BEST_SCORES_KEY = "quiz_best_scores";
+const DEFAULT_APP_TITLE = "Quiz Interactif";
 
 let allQuestions = [];
 let questions = [];
@@ -108,7 +111,16 @@ function showScreen(screen) {
   startScreen.classList.add("hidden");
   quizScreen.classList.add("hidden");
   resultScreen.classList.add("hidden");
+  quizMeta?.classList.add("hidden");
   screen.classList.remove("hidden");
+
+  if (screen === quizScreen) {
+    quizMeta?.classList.remove("hidden");
+  } else {
+    if (appTitle) {
+      appTitle.textContent = DEFAULT_APP_TITLE;
+    }
+  }
 }
 
 function formatTime(totalSeconds) {
@@ -278,6 +290,9 @@ function renderQuestion() {
   nextBtn.disabled = true;
 
   progressLabel.textContent = `Question ${currentIndex + 1}/${questions.length}`;
+  if (appTitle) {
+    appTitle.textContent = `Question ${currentIndex + 1}`;
+  }
   scoreLabel.textContent = `Score: ${score}`;
   updateStreakLabel();
   renderQuestionStatuses();

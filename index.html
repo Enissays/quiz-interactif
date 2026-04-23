@@ -11,62 +11,67 @@
     <img src="rdm.png" alt="Logo RDM" class="corner-logo logo-left" />
     <img src="insap.png" alt="Logo INSAP" class="corner-logo logo-right" />
 
+    <section id="quiz-meta" class="quiz-meta hidden" aria-label="Informations de progression du quiz">
+      <div id="question-statuses" class="question-statuses" aria-label="Progression des questions"></div>
+      <p id="progress" class="progress-label">Question 1/1</p>
+    </section>
+
     <main class="container">
-      <header class="app-header">
-        <div>
-          <p class="eyebrow">Challenge archeologique</p>
-          <h1>Quiz Interactif</h1>
-        </div>
-        <button id="settings-btn" class="icon-btn" type="button" aria-label="Ouvrir les parametres">
-          <i class="fa-solid fa-gear" aria-hidden="true"></i>
-        </button>
-      </header>
+      <div class="container-content">
+        <header class="app-header">
+          <div>
+            <p class="eyebrow">Challenge archeologique</p>
+            <h1 id="app-title">Quiz Interactif</h1>
+          </div>
+          <button id="settings-btn" class="icon-btn" type="button" aria-label="Ouvrir les parametres">
+            <i class="fa-solid fa-gear" aria-hidden="true"></i>
+          </button>
+        </header>
 
-      <section id="start-screen" class="card">
-        <div class="start-content">
-          <p class="start-kicker">30 questions</p>
-          <p class="start-text">Sauriez-vous répondre?</p>
-          <label for="level-select">Niveau</label>
-          <select id="level-select">
-            <option value="1">Facile</option>
-            <option value="2" selected>Moyen</option>
-            <option value="3">Avance</option>
-          </select>
-          <button id="start-btn" type="button"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Lancer le quiz</span></button>
-        </div>
-      </section>
+        <section id="start-screen" class="card">
+          <div class="start-content">
+            <p class="start-kicker">30 questions</p>
+            <p class="start-text">Sauriez-vous répondre?</p>
+            <label for="level-select">Niveau</label>
+            <select id="level-select">
+              <option value="1">Facile</option>
+              <option value="2" selected>Moyen</option>
+              <option value="3">Avance</option>
+            </select>
+            <button id="start-btn" type="button"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Lancer le quiz</span></button>
+          </div>
+        </section>
 
-      <section id="quiz-screen" class="card hidden">
-        <div id="question-statuses" class="question-statuses" aria-label="Progression des questions"></div>
-        <div class="quiz-top">
-          <span id="progress">Question 1/1</span>
-          <span id="score">Score: 0</span>
-          <span id="streak">Streak: 0</span>
-          <span id="timer">Temps: 00:00</span>
-        </div>
+        <section id="quiz-screen" class="card hidden">
+          <div class="quiz-top">
+            <span id="score">Score: 0</span>
+            <span id="streak">Streak: 0</span>
+            <span id="timer">Temps: 00:00</span>
+          </div>
 
-        <h2 id="question-text">Chargement...</h2>
-        <div id="answers" class="answers"></div>
+          <h2 id="question-text">Chargement...</h2>
+          <div id="answers" class="answers"></div>
 
-        <div class="actions">
-          <button id="next-btn" type="button" disabled><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>Suivante</span></button>
-        </div>
-      </section>
+          <div class="actions">
+            <button id="next-btn" type="button" disabled><i class="fa-solid fa-arrow-right" aria-hidden="true"></i><span>Suivante</span></button>
+          </div>
+        </section>
 
-      <section id="result-screen" class="card hidden">
-        <h2>Resultat</h2>
-        <p id="victory-message" class="victory-message"></p>
-        <p id="final-score"></p>
-        <label for="player-name-input">Ton nom</label>
-        <input id="player-name-input" type="text" maxlength="30" placeholder="Ex: Rachid" />
-        <button id="save-score-btn" type="button"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>Enregistrer mon score</span></button>
-          <p id="save-status" class="status"></p>
-        <h3>Meilleurs scores</h3>
-        <ol id="best-scores" class="best-scores"></ol>
-        <button id="restart-btn" type="button"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i><span>Rejouer</span></button>
-      </section>
+        <section id="result-screen" class="card hidden">
+          <h2>Resultat</h2>
+          <p id="victory-message" class="victory-message"></p>
+          <p id="final-score"></p>
+          <label for="player-name-input">Ton nom</label>
+          <input id="player-name-input" type="text" maxlength="30" placeholder="Ex: Rachid" />
+          <button id="save-score-btn" type="button"><i class="fa-solid fa-floppy-disk" aria-hidden="true"></i><span>Enregistrer mon score</span></button>
+            <p id="save-status" class="status"></p>
+          <h3>Meilleurs scores</h3>
+          <ol id="best-scores" class="best-scores"></ol>
+          <button id="restart-btn" type="button"><i class="fa-solid fa-rotate-right" aria-hidden="true"></i><span>Rejouer</span></button>
+        </section>
 
-      <p id="status" class="status"></p>
+        <p id="status" class="status"></p>
+      </div>
     </main>
 
     <dialog id="settings-modal" class="modal-overlay" aria-labelledby="settings-title">
