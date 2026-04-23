@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Special Gothic";
-  src: url("./SpecialGothic-Regular.ttf") format("truetype");
+  src: url("./fonts/SpecialGothic-Regular.ttf") format("truetype");
 }
 
 :root {
