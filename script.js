@@ -29,6 +29,7 @@ const saveStatusLabel = document.getElementById("save-status");
 const bestScoresList = document.getElementById("best-scores");
 const statusLabel = document.getElementById("status");
 
+
 const BEST_SCORES_KEY = "quiz_best_scores";
 const DEFAULT_APP_TITLE = "Quiz Interactif";
 
@@ -116,6 +117,7 @@ function showScreen(screen) {
 
   if (screen === quizScreen) {
     quizMeta?.classList.remove("hidden");
+    restartBtn.classList.remove("hidden");
   } else {
     if (appTitle) {
       appTitle.textContent = DEFAULT_APP_TITLE;
