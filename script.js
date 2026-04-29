@@ -7,6 +7,7 @@ const appTitle = document.getElementById("app-title");
 const startBtn = document.getElementById("start-btn");
 const nextBtn = document.getElementById("next-btn");
 const restartBtn = document.getElementById("restart-btn");
+const restartResultBtn = document.getElementById("restart-result-btn");
 const saveScoreBtn = document.getElementById("save-score-btn");
 const timeInput = document.getElementById("time-input");
 const settingsBtn = document.getElementById("settings-btn");
@@ -119,9 +120,7 @@ function showScreen(screen) {
     quizMeta?.classList.remove("hidden");
     restartBtn.classList.remove("hidden");
   } else {
-    if (appTitle) {
-      appTitle.textContent = DEFAULT_APP_TITLE;
-    }
+    appTitle.textContent = DEFAULT_APP_TITLE;
   }
 }
 
@@ -393,6 +392,7 @@ function showResult() {
 }
 
 function resetQuiz() {
+  console.log("resetting..");
   clearQuestionTimer();
   currentIndex = 0;
   score = 0;
@@ -442,6 +442,7 @@ async function startQuiz() {
 startBtn.addEventListener("click", startQuiz);
 nextBtn.addEventListener("click", nextQuestion);
 restartBtn.addEventListener("click", resetQuiz);
+restartResultBtn?.addEventListener("click", resetQuiz);
 saveScoreBtn.addEventListener("click", handleSaveScore);
 settingsBtn.addEventListener("click", openSettingsModal);
 closeSettingsBtn.addEventListener("click", closeSettingsModal);
