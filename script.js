@@ -151,6 +151,28 @@ function getStreakTarget(level) {
   return 7;
 }
 
+function shuffleArray(items) {
+  const shuffled = [...items];
+
+  for (let index = shuffled.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [shuffled[index], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[index]];
+  }
+
+  return shuffled;
+}
+
+function shuffleQuestionChoices(question) {
+  const correctChoice = question.choices[question.answerIndex];
+  const shuffledChoices = shuffleArray(question.choices);
+
+  return {
+    ...question,
+    choices: shuffledChoices,
+    answerIndex: shuffledChoices.indexOf(correctChoice)
+  };
+}
+
 function initializeQuestionStates() {
   questionStates = Array.from({ length: questions.length }, () => "pending");
   renderQuestionStatuses();
@@ -419,7 +441,9 @@ async function startQuiz() {
     }
 
     const selectedLevel = getSelectedLevel();
-    questions = allQuestions.filter((q) => q.lv === selectedLevel);
+    questions = shuffleArray(
+      allQuestions.filter((q) => q.lv === selectedLevel).map((question) => shuffleQuestionChoices(question))
+    );
 
     if (questions.length === 0) {
       throw new Error("Aucune question disponible pour ce niveau.");
