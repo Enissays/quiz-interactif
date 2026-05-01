@@ -600,3 +600,23 @@ h3 {
     width: 100%;
   }
 }
+
+/* RTL support */
+body.rtl {
+  direction: rtl;
+}
+
+body.rtl header h1,
+body.rtl .start-text,
+body.rtl .progress-label,
+body.rtl .question-status,
+body.rtl .answer-btn,
+body.rtl label,
+body.rtl input,
+body.rtl select {
+  text-align: right;
+}
+
+body.rtl .answer-btn {
+  text-align: right;
+}

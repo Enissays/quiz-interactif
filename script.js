@@ -15,6 +15,7 @@ const settingsModal = document.getElementById("settings-modal");
 const closeSettingsBtn = document.getElementById("close-settings-btn");
 const saveSettingsBtn = document.getElementById("save-settings-btn");
 const levelSelect = document.getElementById("level-select");
+const langSelect = document.getElementById("lang-select");
 
 const questionText = document.getElementById("question-text");
 const questionStatusesContainer = document.getElementById("question-statuses");
@@ -48,6 +49,80 @@ let bestStreak = 0;
 let hasSavedCurrentScore = false;
 let questionStates = [];
 
+// locale support
+let currentLocale = "fr";
+const LOCALES = {
+  fr: {
+    startBtn: "Lancer le quiz",
+    nextBtn: "Suivante",
+    continueBtn: "Continuer",
+    seeResult: "Voir resultat",
+    restart: "Rejouer",
+    score: (s) => `Score: ${s}`,
+    streak: (s) => `Streak: ${s}`,
+    timer: (t) => `Temps: ${t}`,
+    progress: (i, total) => `Question ${i}/${total}`,
+    noScores: "Aucun score enregistre",
+    savedAlready: "Ce score est deja enregistre.",
+    saved: "Score enregistre.",
+    settingsTitle: "Parametres",
+    levelLabel: "Niveau",
+    timeLabel: "Temps par question (secondes)",
+    playerNamePlaceholder: "Ex: Rachid",
+    finalResult: (s, total) => `Tu as obtenu ${s} / ${total}`,
+    victory: (best, target) => `Victoire ! Tu as atteint un streak de ${best} et l'objectif était ${target}.`,
+    defeat: (best, target) => `Objectif non atteint : ${best} / ${target} pour une victoire.`
+  },
+  ar: {
+    startBtn: "ابدأ الاختبار",
+    nextBtn: "التالي",
+    continueBtn: "استمرار",
+    seeResult: "عرض النتيجة",
+    restart: "إعادة اللعب",
+    score: (s) => `النتيجة: ${s}`,
+    streak: (s) => `السلسلة: ${s}`,
+    timer: (t) => `الوقت: ${t}`,
+    progress: (i, total) => `السؤال ${i}/${total}`,
+    noScores: "لا توجد نتائج مسجلة",
+    savedAlready: "تم تسجيل هذه النتيجة بالفعل.",
+    saved: "تم حفظ النتيجة.",
+    settingsTitle: "الإعدادات",
+    levelLabel: "المستوى",
+    timeLabel: "الوقت لكل سؤال (بالثواني)",
+    playerNamePlaceholder: "مثال: رشيد",
+    finalResult: (s, total) => `لقد حصلت على ${s} / ${total}`,
+    victory: (best, target) => `انتصار! وصلت إلى سلسلة ${best} والهدف كان ${target}.`,
+    defeat: (best, target) => `الهدف غير محقق: ${best} / ${target} للفوز.`
+  }
+};
+
+function applyLocale(locale) {
+  currentLocale = locale;
+  document.documentElement.lang = locale === "ar" ? "ar" : "fr";
+  if (locale === "ar") document.body.classList.add("rtl");
+  else document.body.classList.remove("rtl");
+
+  // update static UI texts
+  startBtn.querySelector("span").textContent = LOCALES[locale].startBtn;
+  nextBtn.querySelector("span").textContent = LOCALES[locale].nextBtn;
+  restartBtn.querySelector("span").textContent = LOCALES[locale].restart;
+  restartResultBtn && (restartResultBtn.querySelector("span").textContent = LOCALES[locale].restart);
+  saveScoreBtn.querySelector("span").textContent = locale === "ar" ? "حفظ نتيجتي" : "Enregistrer mon score";
+  document.getElementById("settings-title").textContent = LOCALES[locale].settingsTitle;
+  const levelLabelEl = document.querySelector('label[for="level-select"]');
+  if (levelLabelEl) levelLabelEl.textContent = LOCALES[locale].levelLabel;
+  const timeLabelEl = document.querySelector('label[for="time-input"]');
+  if (timeLabelEl) timeLabelEl.textContent = LOCALES[locale].timeLabel;
+  playerNameInput.placeholder = LOCALES[locale].playerNamePlaceholder;
+
+  // update dynamic texts
+  updateTimerLabel();
+  updateStreakLabel();
+  scoreLabel.textContent = LOCALES[locale].score(score);
+  renderBestScores();
+  renderQuestionStatuses();
+}
+
 function sanitizeTimeInput() {
   const parsedTime = Number.parseInt(timeInput.value, 10);
   timePerQuestion = Number.isNaN(parsedTime) ? 20 : Math.min(Math.max(parsedTime, 5), 120);
@@ -70,7 +145,8 @@ function saveSettings() {
 async function loadQuestions() {
   let response;
   try {
-    response = await fetch("./questions.json", { cache: "no-store" });
+    const path = currentLocale === "ar" ? "./questions.ar.json" : "./questions.json";
+    response = await fetch(path, { cache: "no-store" });
   } catch {
     if (globalThis.location.protocol === "file:") {
       throw new Error(
@@ -133,11 +209,11 @@ function formatTime(totalSeconds) {
 }
 
 function updateTimerLabel() {
-  timerLabel.textContent = `Temps: ${formatTime(remainingTime)}`;
+  timerLabel.textContent = LOCALES[currentLocale].timer(formatTime(remainingTime));
 }
 
 function updateStreakLabel() {
-  streakLabel.textContent = `Streak: ${currentStreak}`;
+  streakLabel.textContent = LOCALES[currentLocale].streak(currentStreak);
 }
 
 function getSelectedLevel() {
@@ -258,7 +334,7 @@ function renderBestScores() {
 
   if (scores.length === 0) {
     const li = document.createElement("li");
-    li.textContent = "Aucun score enregistre";
+    li.textContent = LOCALES[currentLocale].noScores;
     bestScoresList.appendChild(li);
     return;
   }
@@ -296,14 +372,14 @@ function registerBestScore(name) {
 
 function handleSaveScore() {
   if (hasSavedCurrentScore) {
-    saveStatusLabel.textContent = "Ce score est deja enregistre.";
+    saveStatusLabel.textContent = LOCALES[currentLocale].savedAlready;
     return;
   }
 
   const name = playerNameInput.value.trim() || "Anonyme";
   registerBestScore(name);
   hasSavedCurrentScore = true;
-  saveStatusLabel.textContent = "Score enregistre.";
+  saveStatusLabel.textContent = LOCALES[currentLocale].saved;
 }
 
 function renderQuestion() {
@@ -312,11 +388,11 @@ function renderQuestion() {
   answered = false;
   nextBtn.disabled = true;
 
-  progressLabel.textContent = `Question ${currentIndex + 1}/${questions.length}`;
+  progressLabel.textContent = LOCALES[currentLocale].progress(currentIndex + 1, questions.length);
   if (appTitle) {
-    appTitle.textContent = `Question ${currentIndex + 1}`;
+    appTitle.textContent = LOCALES[currentLocale].progress(currentIndex + 1, questions.length);
   }
-  scoreLabel.textContent = `Score: ${score}`;
+  scoreLabel.textContent = LOCALES[currentLocale].score(score);
   updateStreakLabel();
   renderQuestionStatuses();
   questionText.textContent = q.question;
@@ -372,7 +448,7 @@ function validateAnswer() {
     btn.disabled = true;
   });
 
-  scoreLabel.textContent = `Score: ${score}`;
+  scoreLabel.textContent = LOCALES[currentLocale].score(score);
   updateStreakLabel();
   answered = true;
 }
@@ -402,14 +478,14 @@ function showResult() {
   hasSavedCurrentScore = false;
   playerNameInput.value = "";
   saveStatusLabel.textContent = "";
-  finalScoreLabel.textContent = `Tu as obtenu ${score} / ${questions.length}`;
+  finalScoreLabel.textContent = LOCALES[currentLocale].finalResult(score, questions.length);
 
   const level = getSelectedLevel();
   const targetStreak = getStreakTarget(level);
   if (bestStreak >= targetStreak) {
-    victoryMessageLabel.textContent = `Victoire ! Tu as atteint un streak de ${bestStreak} et l'objectif était ${targetStreak}.`;
+    victoryMessageLabel.textContent = LOCALES[currentLocale].victory(bestStreak, targetStreak);
   } else {
-    victoryMessageLabel.textContent = `Objectif non atteint : ${bestStreak} / ${targetStreak} pour une victoire.`;
+    victoryMessageLabel.textContent = LOCALES[currentLocale].defeat(bestStreak, targetStreak);
   }
 }
 
@@ -471,6 +547,17 @@ saveScoreBtn.addEventListener("click", handleSaveScore);
 settingsBtn.addEventListener("click", openSettingsModal);
 closeSettingsBtn.addEventListener("click", closeSettingsModal);
 saveSettingsBtn.addEventListener("click", saveSettings);
+
+// language selector
+langSelect?.addEventListener("change", (ev) => {
+  const value = ev.target.value;
+  applyLocale(value);
+  // force reload questions for new locale next time
+  allQuestions = [];
+});
+
+// set initial locale from selector (or default)
+applyLocale(langSelect?.value || currentLocale);
 
 settingsModal.addEventListener("click", (event) => {
   if (event.target === settingsModal) {
