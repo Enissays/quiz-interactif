@@ -149,6 +149,8 @@ header h1 {
   color: #72461f;
   text-shadow: 0 2px 0 rgba(250, 229, 186, 0.46), 0 7px 16px rgba(56, 34, 20, 0.22);
   text-align: center;
+  top: -20px;
+  position: relative;
 }
 
 .app-header > .icon-btn {
@@ -585,15 +587,12 @@ h3 {
 
   .card {
     padding: 8px 2px 0;
+    margin-top: 28px;
   }
 
   .app-header {
     top: -8px;
     width: 100%;
-  }
-
-  .card {
-    margin-top: 28px;
   }
 
   .quiz-top {
@@ -624,4 +623,47 @@ body.rtl select {
 
 body.rtl .answer-btn {
   text-align: right;
+}
+
+/* Language footer */
+.lang-footer {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+}
+
+.lang-toggle {
+  border: 2px solid rgba(104, 72, 43, 0.55);
+  background: linear-gradient(180deg, rgba(245, 231, 203, 0.98), rgba(221, 202, 166, 0.98));
+  color: var(--text-main);
+  border-radius: 18px;
+  padding: 16px 28px;
+  min-width: 280px;
+  min-height: 64px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  will-change: transform;
+  box-shadow: 0 12px 26px rgba(56, 34, 20, 0.18);
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease, background 0.2s ease;
+}
+
+.lang-toggle:hover {
+  border-color: rgba(120, 88, 54, 0.95);
+  box-shadow: 0 16px 30px rgba(56, 34, 20, 0.22);
+  transform: translateY(-2px);
+}
+
+.lang-toggle:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: 0 8px 18px rgba(24, 38, 58, 0.12);
+}
+
+.lang-toggle span {
+  transition: font-weight 0.2s ease;
 }

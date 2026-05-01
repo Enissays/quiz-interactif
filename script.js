@@ -15,7 +15,6 @@ const settingsModal = document.getElementById("settings-modal");
 const closeSettingsBtn = document.getElementById("close-settings-btn");
 const saveSettingsBtn = document.getElementById("save-settings-btn");
 const levelSelect = document.getElementById("level-select");
-const langSelect = document.getElementById("lang-select");
 
 const questionText = document.getElementById("question-text");
 const questionStatusesContainer = document.getElementById("question-statuses");
@@ -53,27 +52,46 @@ let questionStates = [];
 let currentLocale = "fr";
 const LOCALES = {
   fr: {
+    pageTitle: "Quiz Interactif",
+    eyebrow: "Challenge archéologique",
+    startKicker: "30 questions",
+    startText: "Sauriez-vous répondre?",
     startBtn: "Lancer le quiz",
     nextBtn: "Suivante",
     continueBtn: "Continuer",
-    seeResult: "Voir resultat",
+    seeResult: "Voir résultat",
     restart: "Rejouer",
     score: (s) => `Score: ${s}`,
     streak: (s) => `Streak: ${s}`,
     timer: (t) => `Temps: ${t}`,
     progress: (i, total) => `Question ${i}/${total}`,
-    noScores: "Aucun score enregistre",
-    savedAlready: "Ce score est deja enregistre.",
-    saved: "Score enregistre.",
-    settingsTitle: "Parametres",
+    noScores: "Aucun score enregistré",
+    savedAlready: "Ce score est déjà enregistré.",
+    saved: "Score enregistré.",
+    settingsTitle: "Paramètres",
     levelLabel: "Niveau",
+    levelEasy: "Facile",
+    levelMedium: "Moyen",
+    levelHard: "Avancé",
     timeLabel: "Temps par question (secondes)",
+    langLabel: "Langue",
+    langFrench: "Français",
+    langArabic: "العربية",
+    modalNote: "Valeur recommandée: 20 à 30 secondes.",
+    applyBtn: "Appliquer",
     playerNamePlaceholder: "Ex: Rachid",
     finalResult: (s, total) => `Tu as obtenu ${s} / ${total}`,
     victory: (best, target) => `Victoire ! Tu as atteint un streak de ${best} et l'objectif était ${target}.`,
-    defeat: (best, target) => `Objectif non atteint : ${best} / ${target} pour une victoire.`
+    defeat: (best, target) => `Objectif non atteint : ${best} / ${target} pour une victoire.`,
+    bestScoresTitle: "Meilleurs scores",
+    saveScoreBtn: "Enregistrer mon score",
+    resultTitle: "Résultat"
   },
   ar: {
+    pageTitle: "اختبار أثري",
+    eyebrow: "تحدي أثري",
+    startKicker: "30 سؤالاً",
+    startText: "هل تستطيع الإجابة؟",
     startBtn: "ابدأ الاختبار",
     nextBtn: "التالي",
     continueBtn: "استمرار",
@@ -88,11 +106,22 @@ const LOCALES = {
     saved: "تم حفظ النتيجة.",
     settingsTitle: "الإعدادات",
     levelLabel: "المستوى",
+    levelEasy: "سهل",
+    levelMedium: "متوسط",
+    levelHard: "متقدم",
     timeLabel: "الوقت لكل سؤال (بالثواني)",
+    langLabel: "اللغة",
+    langFrench: "الفرنسية",
+    langArabic: "العربية",
+    modalNote: "القيمة الموصى بها: 20 إلى 30 ثانية.",
+    applyBtn: "تطبيق",
     playerNamePlaceholder: "مثال: رشيد",
     finalResult: (s, total) => `لقد حصلت على ${s} / ${total}`,
     victory: (best, target) => `انتصار! وصلت إلى سلسلة ${best} والهدف كان ${target}.`,
-    defeat: (best, target) => `الهدف غير محقق: ${best} / ${target} للفوز.`
+    defeat: (best, target) => `الهدف غير محقق: ${best} / ${target} للفوز.`,
+    bestScoresTitle: "أفضل النتائج",
+    saveScoreBtn: "حفظ نتيجتي",
+    resultTitle: "النتيجة"
   }
 };
 
@@ -102,25 +131,91 @@ function applyLocale(locale) {
   if (locale === "ar") document.body.classList.add("rtl");
   else document.body.classList.remove("rtl");
 
-  // update static UI texts
-  startBtn.querySelector("span").textContent = LOCALES[locale].startBtn;
-  nextBtn.querySelector("span").textContent = LOCALES[locale].nextBtn;
-  restartBtn.querySelector("span").textContent = LOCALES[locale].restart;
-  restartResultBtn && (restartResultBtn.querySelector("span").textContent = LOCALES[locale].restart);
-  saveScoreBtn.querySelector("span").textContent = locale === "ar" ? "حفظ نتيجتي" : "Enregistrer mon score";
-  document.getElementById("settings-title").textContent = LOCALES[locale].settingsTitle;
-  const levelLabelEl = document.querySelector('label[for="level-select"]');
-  if (levelLabelEl) levelLabelEl.textContent = LOCALES[locale].levelLabel;
-  const timeLabelEl = document.querySelector('label[for="time-input"]');
-  if (timeLabelEl) timeLabelEl.textContent = LOCALES[locale].timeLabel;
+  document.title = LOCALES[locale].pageTitle;
+  updateLocaleHeader(locale);
+  updateLocaleStartScreen(locale);
+  updateLocaleSettings(locale);
+  updateLocaleResult(locale);
+  updateLocaleToggle(locale);
   playerNameInput.placeholder = LOCALES[locale].playerNamePlaceholder;
 
-  // update dynamic texts
   updateTimerLabel();
   updateStreakLabel();
   scoreLabel.textContent = LOCALES[locale].score(score);
   renderBestScores();
   renderQuestionStatuses();
+}
+
+function updateLocaleHeader(locale) {
+  appTitle.textContent = LOCALES[locale].pageTitle;
+}
+
+function updateLocaleStartScreen(locale) {
+  const startKickerEl = document.querySelector(".start-kicker");
+  if (startKickerEl) startKickerEl.textContent = LOCALES[locale].startKicker;
+
+  const startTextEl = document.querySelector(".start-text");
+  if (startTextEl) startTextEl.textContent = LOCALES[locale].startText;
+
+  const eyebrowEl = document.querySelector(".eyebrow");
+  if (eyebrowEl) eyebrowEl.textContent = LOCALES[locale].eyebrow;
+
+  startBtn.querySelector("span").textContent = LOCALES[locale].startBtn;
+  nextBtn.querySelector("span").textContent = LOCALES[locale].nextBtn;
+  restartBtn.querySelector("span").textContent = LOCALES[locale].restart;
+  restartResultBtn && (restartResultBtn.querySelector("span").textContent = LOCALES[locale].restart);
+
+  const saveScoreSpan = saveScoreBtn.querySelector("span");
+  if (saveScoreSpan) saveScoreSpan.textContent = LOCALES[locale].saveScoreBtn;
+}
+
+function updateLocaleSettings(locale) {
+  const settingsTitleEl = document.getElementById("settings-title");
+  if (settingsTitleEl) settingsTitleEl.textContent = LOCALES[locale].settingsTitle;
+
+  const levelLabelEl = document.querySelector('label[for="level-select"]');
+  if (levelLabelEl) levelLabelEl.textContent = LOCALES[locale].levelLabel;
+
+  const levelEasyOption = levelSelect?.querySelector('option[value="1"]');
+  const levelMediumOption = levelSelect?.querySelector('option[value="2"]');
+  const levelHardOption = levelSelect?.querySelector('option[value="3"]');
+  if (levelEasyOption) levelEasyOption.textContent = LOCALES[locale].levelEasy;
+  if (levelMediumOption) levelMediumOption.textContent = LOCALES[locale].levelMedium;
+  if (levelHardOption) levelHardOption.textContent = LOCALES[locale].levelHard;
+
+  const timeLabelEl = document.querySelector('label[for="time-input"]');
+  if (timeLabelEl) timeLabelEl.textContent = LOCALES[locale].timeLabel;
+
+  const langLabelEl = document.querySelector('label[for="lang-select"]');
+  if (langLabelEl) langLabelEl.textContent = LOCALES[locale].langLabel;
+
+  const langFrenchOption = langSelect?.querySelector('option[value="fr"]');
+  const langArabicOption = langSelect?.querySelector('option[value="ar"]');
+  if (langFrenchOption) langFrenchOption.textContent = LOCALES[locale].langFrench;
+  if (langArabicOption) langArabicOption.textContent = LOCALES[locale].langArabic;
+
+  const modalNoteEl = document.getElementById("modal-note-text");
+  if (modalNoteEl) modalNoteEl.textContent = LOCALES[locale].modalNote;
+
+  const saveSettingsBtnEl = document.getElementById("save-settings-btn");
+  if (saveSettingsBtnEl) saveSettingsBtnEl.textContent = LOCALES[locale].applyBtn;
+}
+
+function updateLocaleResult(locale) {
+  const resultTitleEl = document.querySelector("#result-screen h2");
+  if (resultTitleEl) resultTitleEl.textContent = LOCALES[locale].resultTitle;
+
+  const bestScoresTitleEl = document.querySelector("#result-screen h3");
+  if (bestScoresTitleEl) bestScoresTitleEl.textContent = LOCALES[locale].bestScoresTitle;
+}
+
+function updateLocaleToggle(locale) {
+  const langToggleAr = document.getElementById("lang-toggle-ar");
+  const langToggleFr = document.getElementById("lang-toggle-fr");
+  if (langToggleAr && langToggleFr) {
+    langToggleAr.style.fontWeight = locale === "ar" ? "700" : "400";
+    langToggleFr.style.fontWeight = locale === "fr" ? "700" : "400";
+  }
 }
 
 function sanitizeTimeInput() {
@@ -196,7 +291,7 @@ function showScreen(screen) {
     quizMeta?.classList.remove("hidden");
     restartBtn.classList.remove("hidden");
   } else {
-    appTitle.textContent = DEFAULT_APP_TITLE;
+    appTitle.textContent = LOCALES[currentLocale].pageTitle;
   }
 }
 
@@ -294,7 +389,7 @@ function handleTimeUp() {
 
   selectedIndex = -1;
   validateAnswer();
-  nextBtn.textContent = currentIndex === questions.length - 1 ? "Voir resultat" : "Continuer";
+  nextBtn.textContent = currentIndex === questions.length - 1 ? "Voir résultat" : "Continuer";
 }
 
 function startQuestionTimer() {
@@ -458,7 +553,7 @@ function nextQuestion() {
 
   if (!answered) {
     validateAnswer();
-    nextBtn.textContent = currentIndex === questions.length - 1 ? "Voir resultat" : "Continuer";
+    nextBtn.textContent = currentIndex === questions.length - 1 ? "Voir résultat" : "Continuer";
     return;
   }
 
@@ -548,16 +643,17 @@ settingsBtn.addEventListener("click", openSettingsModal);
 closeSettingsBtn.addEventListener("click", closeSettingsModal);
 saveSettingsBtn.addEventListener("click", saveSettings);
 
-// language selector
-langSelect?.addEventListener("change", (ev) => {
-  const value = ev.target.value;
-  applyLocale(value);
+// language toggle button
+const langToggleBtn = document.getElementById("lang-toggle-btn");
+langToggleBtn?.addEventListener("click", () => {
+  const newLocale = currentLocale === "fr" ? "ar" : "fr";
+  applyLocale(newLocale);
   // force reload questions for new locale next time
   allQuestions = [];
 });
 
-// set initial locale from selector (or default)
-applyLocale(langSelect?.value || currentLocale);
+// set initial locale
+applyLocale(currentLocale);
 
 settingsModal.addEventListener("click", (event) => {
   if (event.target === settingsModal) {

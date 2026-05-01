@@ -20,10 +20,10 @@
       <div class="container-content">
         <header class="app-header">
           <div>
-            <p class="eyebrow">Challenge archeologique</p>
+            <p class="eyebrow">Challenge archéologique</p>
             <h1 id="app-title">Quiz Interactif</h1>
           </div>
-          <button id="settings-btn" class="icon-btn" type="button" aria-label="Ouvrir les parametres">
+          <button id="settings-btn" class="icon-btn" type="button" aria-label="Ouvrir les paramètres">
             <i class="fa-solid fa-gear" aria-hidden="true"></i>
           </button>
         </header>
@@ -36,7 +36,7 @@
             <select id="level-select">
               <option value="1">Facile</option>
               <option value="2" selected>Moyen</option>
-              <option value="3">Avance</option>
+              <option value="3">Avancé</option>
             </select>
             <button id="start-btn" type="button"><i class="fa-solid fa-play" aria-hidden="true"></i><span>Lancer le quiz</span></button>
           </div>
@@ -60,7 +60,7 @@
         </section>
 
         <section id="result-screen" class="card hidden">
-          <h2>Resultat</h2>
+          <h2>Résultat</h2>
           <p id="victory-message" class="victory-message"></p>
           <p id="final-score"></p>
           <label for="player-name-input">Ton nom</label>
@@ -76,11 +76,17 @@
       </div>
     </main>
 
+    <footer class="lang-footer">
+      <button id="lang-toggle-btn" type="button" class="lang-toggle" aria-label="Changer de langue / تغيير اللغة">
+        <span id="lang-toggle-ar">عربي</span> / <span id="lang-toggle-fr">Français</span>
+      </button>
+    </footer>
+
     <dialog id="settings-modal" class="modal-overlay" aria-labelledby="settings-title">
       <div class="modal-card">
         <div class="modal-head">
-          <h2 id="settings-title">Parametres</h2>
-          <button id="close-settings-btn" class="icon-btn icon-btn-small" type="button" aria-label="Fermer les parametres"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+          <h2 id="settings-title">Paramètres</h2>
+          <button id="close-settings-btn" class="icon-btn icon-btn-small" type="button" aria-label="Fermer les paramètres"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
         </div>
         <label for="time-input">Temps par question (secondes)</label>
         <input id="time-input" type="number" min="5" max="120" step="5" value="20" />
@@ -89,7 +95,7 @@
           <option value="fr">Français</option>
           <option value="ar">العربية</option>
         </select>
-        <p class="modal-note">Valeur recommandee: 20 a 30 secondes.</p>
+        <p class="modal-note">Valeur recommandée: 20 à 30 secondes.</p>
         <div class="modal-actions">
           <button id="save-settings-btn" type="button">Appliquer</button>
         </div>
