@@ -269,6 +269,11 @@ input:focus {
   flex: 0 1 auto;
 }
 
+/* push the initial start screen slightly lower */
+#start-screen.card {
+  margin-top: 80px;
+}
+
 .card:not(.hidden) {
   display: flex;
   flex-direction: column;
