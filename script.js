@@ -35,6 +35,7 @@ const BEST_SCORES_KEY = "quiz_best_scores";
 const DEFAULT_APP_TITLE = "Quiz Interactif";
 
 let allQuestions = [];
+let questionsCache = {};
 let questions = [];
 let currentIndex = 0;
 let score = 0;
@@ -85,7 +86,13 @@ const LOCALES = {
     defeat: (best, target) => `Objectif non atteint : ${best} / ${target} pour une victoire.`,
     bestScoresTitle: "Meilleurs scores",
     saveScoreBtn: "Enregistrer mon score",
-    resultTitle: "Résultat"
+    resultTitle: "Résultat",
+    nextQuestion: "Suivante",
+    continueQuestion: "Continuer",
+    seeResultQuestion: "Voir résultat",
+    loadingQuestions: "Chargement des questions...",
+    noQuestionsAvailable: "Aucune question disponible pour ce niveau.",
+    unknownError: "Erreur inconnue"
   },
   ar: {
     pageTitle: "اختبار أثري",
@@ -121,9 +128,34 @@ const LOCALES = {
     defeat: (best, target) => `الهدف غير محقق: ${best} / ${target} للفوز.`,
     bestScoresTitle: "أفضل النتائج",
     saveScoreBtn: "حفظ نتيجتي",
-    resultTitle: "النتيجة"
+    resultTitle: "النتيجة",
+    nextQuestion: "التالي",
+    continueQuestion: "استمرار",
+    seeResultQuestion: "عرض النتيجة",
+    loadingQuestions: "جارٍ تحميل الأسئلة...",
+    noQuestionsAvailable: "لا توجد أسئلة متاحة لهذا المستوى.",
+    unknownError: "خطأ غير معروف"
   }
 };
+
+function setButtonLabel(button, label) {
+  const span = button?.querySelector("span");
+  if (span) {
+    span.textContent = label;
+  } else if (button) {
+    button.textContent = label;
+  }
+}
+
+function updateNextButtonLabel() {
+  if (!questions.length || !answered) {
+    setButtonLabel(nextBtn, LOCALES[currentLocale].nextQuestion);
+    return;
+  }
+
+  const label = currentIndex === questions.length - 1 ? LOCALES[currentLocale].seeResultQuestion : LOCALES[currentLocale].continueQuestion;
+  setButtonLabel(nextBtn, label);
+}
 
 function applyLocale(locale) {
   currentLocale = locale;
@@ -144,6 +176,7 @@ function applyLocale(locale) {
   scoreLabel.textContent = LOCALES[locale].score(score);
   renderBestScores();
   renderQuestionStatuses();
+  updateNextButtonLabel();
 }
 
 function updateLocaleHeader(locale) {
@@ -160,13 +193,12 @@ function updateLocaleStartScreen(locale) {
   const eyebrowEl = document.querySelector(".eyebrow");
   if (eyebrowEl) eyebrowEl.textContent = LOCALES[locale].eyebrow;
 
-  startBtn.querySelector("span").textContent = LOCALES[locale].startBtn;
-  nextBtn.querySelector("span").textContent = LOCALES[locale].nextBtn;
-  restartBtn.querySelector("span").textContent = LOCALES[locale].restart;
-  restartResultBtn && (restartResultBtn.querySelector("span").textContent = LOCALES[locale].restart);
+  setButtonLabel(startBtn, LOCALES[locale].startBtn);
+  setButtonLabel(nextBtn, LOCALES[locale].nextQuestion);
+  setButtonLabel(restartBtn, LOCALES[locale].restart);
+  restartResultBtn && setButtonLabel(restartResultBtn, LOCALES[locale].restart);
 
-  const saveScoreSpan = saveScoreBtn.querySelector("span");
-  if (saveScoreSpan) saveScoreSpan.textContent = LOCALES[locale].saveScoreBtn;
+  setButtonLabel(saveScoreBtn, LOCALES[locale].saveScoreBtn);
 }
 
 function updateLocaleSettings(locale) {
@@ -237,10 +269,14 @@ function saveSettings() {
   closeSettingsModal();
 }
 
-async function loadQuestions() {
+async function loadQuestions(locale = currentLocale) {
+  if (questionsCache[locale]) {
+    return questionsCache[locale];
+  }
+
   let response;
   try {
-    const path = currentLocale === "ar" ? "./questions.ar.json" : "./questions.json";
+    const path = locale === "ar" ? "./questions.ar.json" : "./questions.json";
     response = await fetch(path, { cache: "no-store" });
   } catch {
     if (globalThis.location.protocol === "file:") {
@@ -277,6 +313,7 @@ async function loadQuestions() {
     }
   });
 
+  questionsCache[locale] = data;
   return data;
 }
 
@@ -389,7 +426,7 @@ function handleTimeUp() {
 
   selectedIndex = -1;
   validateAnswer();
-  nextBtn.textContent = currentIndex === questions.length - 1 ? "Voir résultat" : "Continuer";
+  updateNextButtonLabel();
 }
 
 function startQuestionTimer() {
@@ -491,6 +528,7 @@ function renderQuestion() {
   updateStreakLabel();
   renderQuestionStatuses();
   questionText.textContent = q.question;
+  updateNextButtonLabel();
 
   answersContainer.innerHTML = "";
   q.choices.forEach((choice, index) => {
@@ -553,12 +591,12 @@ function nextQuestion() {
 
   if (!answered) {
     validateAnswer();
-    nextBtn.textContent = currentIndex === questions.length - 1 ? "Voir résultat" : "Continuer";
+    updateNextButtonLabel();
     return;
   }
 
   currentIndex += 1;
-  nextBtn.textContent = "Suivante";
+  updateNextButtonLabel();
 
   if (currentIndex >= questions.length) {
     showResult();
@@ -585,7 +623,6 @@ function showResult() {
 }
 
 function resetQuiz() {
-  console.log("resetting..");
   clearQuestionTimer();
   currentIndex = 0;
   score = 0;
@@ -599,17 +636,15 @@ function resetQuiz() {
   victoryMessageLabel.textContent = "";
   questionStates = [];
   renderQuestionStatuses();
-  nextBtn.textContent = "Suivante";
+  updateNextButtonLabel();
   showScreen(startScreen);
 }
 
 async function startQuiz() {
-  statusLabel.textContent = "Chargement des questions...";
+  statusLabel.textContent = LOCALES[currentLocale].loadingQuestions;
 
   try {
-    if (allQuestions.length === 0) {
-      allQuestions = await loadQuestions();
-    }
+    allQuestions = await loadQuestions(currentLocale);
 
     const selectedLevel = getSelectedLevel();
     questions = shuffleArray(
@@ -617,7 +652,7 @@ async function startQuiz() {
     );
 
     if (questions.length === 0) {
-      throw new Error("Aucune question disponible pour ce niveau.");
+      throw new Error(LOCALES[currentLocale].noQuestionsAvailable);
     }
 
     currentIndex = 0;
@@ -630,7 +665,7 @@ async function startQuiz() {
     renderQuestion();
     statusLabel.textContent = "";
   } catch (error) {
-    statusLabel.textContent = error instanceof Error ? error.message : "Erreur inconnue";
+    statusLabel.textContent = error instanceof Error ? error.message : LOCALES[currentLocale].unknownError;
   }
 }
 
@@ -648,8 +683,24 @@ const langToggleBtn = document.getElementById("lang-toggle-btn");
 langToggleBtn?.addEventListener("click", () => {
   const newLocale = currentLocale === "fr" ? "ar" : "fr";
   applyLocale(newLocale);
-  // force reload questions for new locale next time
+  questions = [];
   allQuestions = [];
+
+  if (!startScreen.classList.contains("hidden")) {
+    return;
+  }
+
+  clearQuestionTimer();
+  currentIndex = 0;
+  score = 0;
+  currentStreak = 0;
+  bestStreak = 0;
+  selectedIndex = null;
+  answered = false;
+  questionStates = [];
+  renderQuestionStatuses();
+  updateNextButtonLabel();
+  showScreen(startScreen);
 });
 
 // set initial locale
