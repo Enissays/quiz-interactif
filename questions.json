@@ -1,186 +1,402 @@
 [
   {
-    "question": "Quel outil est utilisé pour mesurer les vestiges ?",
-    "choices": ["La truelle", "Le mètre", "Le pinceau"],
-    "answerIndex": 1,
-    "lv" : 1
-  },
-  {
     "question": "Que fait un archéologue ?",
-    "choices": ["Il construit des maisons", "Il étudie le passé", "Il enseigne les mathématiques"],
+    "choices": [
+      "Il construit",
+      "Il étudie le passé",
+      "Il vend"
+    ],
     "answerIndex": 1,
-    "lv" : 1
+    "lv": 1
   },
   {
     "question": "Où travaille un archéologue ?",
-    "choices": ["Dans un chantier de fouilles", "Dans une banque", "Dans une école uniquement"],
+    "choices": [
+      "Banque",
+      "Chantier de fouilles",
+      "Supermarché"
+    ],
+    "answerIndex": 1,
+    "lv": 1
+  },
+  {
+    "question": "Quel objet trouve-t-on souvent ?",
+    "choices": [
+      "Téléphone",
+      "Poterie",
+      "Ordinateur"
+    ],
+    "answerIndex": 1,
+    "lv": 1
+  },
+  {
+    "question": "Que signifie fouille ?",
+    "choices": [
+      "Creuser pour trouver des vestiges",
+      "Construire",
+      "Nettoyer"
+    ],
     "answerIndex": 0,
-    "lv" : 1
+    "lv": 1
   },
   {
-    "question": "Quel objet est souvent trouvé dans les fouilles ?",
-    "choices": ["Téléphone", "Poterie", "Ordinateur"],
+    "question": "Quel outil sert à nettoyer ?",
+    "choices": [
+      "Marteau",
+      "Pinceau",
+      "Pelle"
+    ],
     "answerIndex": 1,
-    "lv" : 1
-  },
-  {
-    "question": "Que signifie fouille archéologique ?",
-    "choices": ["Creuser pour trouver des objets anciens", "Construire une route", "Nettoyer une maison"],
-    "answerIndex": 0,
-    "lv" : 1
-  },
-  {
-    "question": "Quel matériau est souvent retrouvé ?",
-    "choices": ["Plastique", "Pierre", "Verre moderne"],
-    "answerIndex": 1,
-    "lv" : 1
-  },
-  {
-    "question": "Comment les archéologues nettoient-ils les objets ?",
-    "choices": ["Avec un marteau", "Avec un pinceau", "Avec de l'eau forte"],
-    "answerIndex": 1,
-    "lv" : 1
-
-  },
-  {
-    "question": "Que trouve-t-on dans une tombe ancienne ?",
-    "choices": ["Des vêtements modernes", "Des objets anciens", "Des voitures"],
-    "answerIndex": 1,
-    "lv" : 1
-
-  },
-  {
-    "question": "À quoi sert une carte archéologique ?",
-    "choices": ["Trouver des magasins", "Localiser des sites anciens", "Regarder la météo"],
-    "answerIndex": 1,
-    "lv" : 1
-
+    "lv": 1
   },
   {
     "question": "Que signifie site archéologique ?",
-    "choices": ["Un terrain de sport", "Un lieu avec des vestiges anciens", "Un hôpital"],
+    "choices": [
+      "Terrain vide",
+      "Lieu avec vestiges",
+      "Parc"
+    ],
     "answerIndex": 1,
-    "lv" : 1
-
+    "lv": 1
+  },
+  {
+    "question": "En mer, que trouve-t-on souvent ?",
+    "choices": [
+      "Voitures",
+      "Épaves",
+      "Routes"
+    ],
+    "answerIndex": 1,
+    "lv": 1
+  },
+  {
+    "question": "Une épave est :",
+    "choices": [
+      "Un bateau moderne",
+      "Restes d’un navire",
+      "Une maison"
+    ],
+    "answerIndex": 1,
+    "lv": 1
+  },
+  {
+    "question": "Pourquoi protéger les sites ?",
+    "choices": [
+      "Construire",
+      "Préserver l’histoire",
+      "Vendre"
+    ],
+    "answerIndex": 1,
+    "lv": 1
+  },
+  {
+    "question": "Quel matériau ancien est fréquent ?",
+    "choices": [
+      "Plastique",
+      "Pierre",
+      "Aluminium"
+    ],
+    "answerIndex": 1,
+    "lv": 1
   },
   {
     "question": "Quel site marocain est une ville romaine célèbre ?",
-    "choices": ["Volubilis", "Marrakech", "Agadir"],
+    "choices": [
+      "Volubilis",
+      "Rabat",
+      "Agadir"
+    ],
     "answerIndex": 0,
-    "lv" : 2
+    "lv": 2
   },
   {
-    "question": "Quel outil sert à creuser précisément ?",
-    "choices": ["La truelle", "La pelle mécanique", "La pioche lourde"],
+    "question": "Quel outil sert à fouiller précisément ?",
+    "choices": [
+      "Truelle",
+      "Pelle mécanique",
+      "Pioche lourde"
+    ],
     "answerIndex": 0,
-    "lv" : 2
+    "lv": 2
   },
   {
     "question": "Que permet la datation ?",
-    "choices": ["Trouver un trésor", "Connaître l'âge d'un objet", "Nettoyer un site"],
+    "choices": [
+      "Trouver un trésor",
+      "Connaître l’âge",
+      "Nettoyer"
+    ],
     "answerIndex": 1,
-    "lv" : 2
+    "lv": 2
   },
   {
     "question": "Que signifie patrimoine ?",
-    "choices": ["Les biens modernes", "Les richesses culturelles héritées", "Les outils de travail"],
+    "choices": [
+      "Biens modernes",
+      "Héritage culturel",
+      "Outils"
+    ],
     "answerIndex": 1,
-    "lv" : 2
+    "lv": 2
   },
   {
-    "question": "Quelle civilisation a laissé Volubilis ?",
-    "choices": ["Romaine", "Américaine", "Chinoise"],
+    "question": "Quelle civilisation à Volubilis ?",
+    "choices": [
+      "Romaine",
+      "Américaine",
+      "Japonaise"
+    ],
     "answerIndex": 0,
-    "lv" : 2
+    "lv": 2
   },
   {
-    "question": "Pourquoi protège-t-on les sites archéologiques ?",
-    "choices": ["Pour les vendre", "Pour préserver l'histoire", "Pour construire dessus"],
+    "question": "Que signifie stratigraphie ?",
+    "choices": [
+      "Carte",
+      "Étude des couches",
+      "Machine"
+    ],
     "answerIndex": 1,
-    "lv" : 2
+    "lv": 2
   },
   {
-    "question": "Que fait un archéologue après une découverte ?",
-    "choices": ["Il la jette", "Il l'étudie", "Il la vend"],
-    "answerIndex": 1,
-    "lv" : 2
-  },
-  {
-    "question": "Quel type d'objet peut être trouvé ?",
-    "choices": ["Bijoux anciens", "Télévisions", "Voitures"],
+    "question": "Sous l’eau, quel outil détecte les structures ?",
+    "choices": [
+      "Sonar",
+      "Marteau",
+      "Stylo"
+    ],
     "answerIndex": 0,
-    "lv" : 2
+    "lv": 2
   },
   {
-    "question": "Qu'est-ce qu'une stratigraphie ?",
-    "choices": ["Une carte", "Une étude des couches de sol", "Une machine"],
+    "question": "Pourquoi les objets en bois se conservent sous l’eau ?",
+    "choices": [
+      "Chaleur",
+      "Manque d’oxygène",
+      "Lumière"
+    ],
     "answerIndex": 1,
-    "lv" : 2
+    "lv": 2
+  },
+  {
+    "question": "Que fait-on après une découverte ?",
+    "choices": [
+      "On jette",
+      "On étudie",
+      "On vend"
+    ],
+    "answerIndex": 1,
+    "lv": 2
   },
   {
     "question": "Que représente une mosaïque ?",
-    "choices": ["Un tableau moderne", "Une image faite de petites pierres", "Une carte"],
+    "choices": [
+      "Carte",
+      "Image en petites pierres",
+      "Livre"
+    ],
     "answerIndex": 1,
-    "lv" : 2
+    "lv": 2
   },
   {
-    "question": "Quel site marocain est connu pour ses tombes antiques ?",
-    "choices": ["Chellah", "Tanger", "Oujda"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Quelle période vient avant l'histoire écrite ?",
-    "choices": ["Préhistoire", "Moyen Âge", "Moderne"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Quel matériau conserve bien les objets ?",
-    "choices": ["Sable", "Eau", "Air"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Pourquoi les objets sont-ils fragiles ?",
-    "choices": ["À cause du temps", "À cause de la lumière", "À cause du bruit"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Quel outil est utilisé pour dessiner les découvertes ?",
-    "choices": ["Stylo et carnet", "Marteau", "Pelle"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Que signifie conservation ?",
-    "choices": ["Détruire", "Protéger", "Vendre"],
+    "question": "Principe de base de la stratigraphie ?",
+    "choices": [
+      "Symétrie",
+      "Superposition",
+      "Gravité"
+    ],
     "answerIndex": 1,
-    "lv" : 3
+    "lv": 3
   },
   {
-    "question": "Quel élément aide à comprendre une civilisation ?",
-    "choices": ["Ses objets", "Ses routes modernes", "Ses voitures"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Quelle science est liée à l'archéologie ?",
-    "choices": ["Géologie", "Sport", "Cuisine"],
-    "answerIndex": 0,
-    "lv" : 3
-  },
-  {
-    "question": "Pourquoi documenter les fouilles ?",
-    "choices": ["Pour oublier", "Pour garder une trace", "Pour vendre"],
+    "question": "Datation absolue ?",
+    "choices": [
+      "Stratigraphie",
+      "Carbone 14",
+      "Typologie"
+    ],
     "answerIndex": 1,
-    "lv" : 3
+    "lv": 3
   },
   {
-    "question": "Que fait l'INSAP ?",
-    "choices": ["Étudie et protège le patrimoine", "Vend des produits", "Construit des maisons"],
+    "question": "Que signifie contexte archéologique ?",
+    "choices": [
+      "Objet seul",
+      "Environnement de découverte",
+      "Musée"
+    ],
+    "answerIndex": 1,
+    "lv": 3
+  },
+  {
+    "question": "Discipline des animaux anciens ?",
+    "choices": [
+      "Archéozoologie",
+      "Botanique",
+      "Chimie"
+    ],
     "answerIndex": 0,
-    "lv" : 3
+    "lv": 3
+  },
+  {
+    "question": "Que désigne une US ?",
+    "choices": [
+      "Objet",
+      "Couche/activité",
+      "Carte"
+    ],
+    "answerIndex": 1,
+    "lv": 3
+  },
+  {
+    "question": "Quel site marocain antique important ?",
+    "choices": [
+      "Chellah",
+      "Laâyoune",
+      "Berkane"
+    ],
+    "answerIndex": 0,
+    "lv": 3
+  },
+  {
+    "question": "Quel phénomène détruit les métaux en mer ?",
+    "choices": [
+      "Vent",
+      "Corrosion saline",
+      "Soleil"
+    ],
+    "answerIndex": 1,
+    "lv": 3
+  },
+  {
+    "question": "Méthode 3D sous-marine ?",
+    "choices": [
+      "Dessin",
+      "Photogrammétrie",
+      "Texte"
+    ],
+    "answerIndex": 1,
+    "lv": 3
+  },
+  {
+    "question": "Pourquoi une fouille est-elle destructrice ?",
+    "choices": [
+      "Perte d’objets",
+      "Destruction du contexte",
+      "Bruit"
+    ],
+    "answerIndex": 1,
+    "lv": 3
+  },
+  {
+    "question": "Que fait l’INSAP ?",
+    "choices": [
+      "Former et protéger",
+      "Construire",
+      "Vendre"
+    ],
+    "answerIndex": 0,
+    "lv": 3
+  },
+  {
+    "question": "“Terminus post quem” signifie :",
+    "choices": [
+      "Date avant",
+      "Date après laquelle",
+      "Date exacte"
+    ],
+    "answerIndex": 1,
+    "lv": 4
+  },
+  {
+    "question": "Étude des pollens ?",
+    "choices": [
+      "Anthracologie",
+      "Palynologie",
+      "Zoologie"
+    ],
+    "answerIndex": 1,
+    "lv": 4
+  },
+  {
+    "question": "Étude des charbons ?",
+    "choices": [
+      "Anthracologie",
+      "Numismatique",
+      "Géologie"
+    ],
+    "answerIndex": 0,
+    "lv": 4
+  },
+  {
+    "question": "Limite du carbone 14 ?",
+    "choices": [
+      "Trop précis",
+      "~50 000 ans",
+      "Inutile"
+    ],
+    "answerIndex": 1,
+    "lv": 4
+  },
+  {
+    "question": "Taphonomie =",
+    "choices": [
+      "Étude outils",
+      "Processus de conservation",
+      "Construction"
+    ],
+    "answerIndex": 1,
+    "lv": 4
+  },
+  {
+    "question": "Sédiment idéal en mer ?",
+    "choices": [
+      "Sable oxygéné",
+      "Vase anoxique",
+      "Roche"
+    ],
+    "answerIndex": 1,
+    "lv": 4
+  },
+  {
+    "question": "Étape après extraction marine ?",
+    "choices": [
+      "Vente",
+      "Désalinisation",
+      "Exposition"
+    ],
+    "answerIndex": 1,
+    "lv": 4
+  },
+  {
+    "question": "Méthode sans fouille ?",
+    "choices": [
+      "Prospection géophysique",
+      "Pelle",
+      "Marteau"
+    ],
+    "answerIndex": 0,
+    "lv": 4
+  },
+  {
+    "question": "Organisation protégeant patrimoine subaquatique ?",
+    "choices": [
+      "UNESCO",
+      "ONU (général)",
+      "OTAN"
+    ],
+    "answerIndex": 0,
+    "lv": 4
+  },
+  {
+    "question": "Rôle d’un SIG ?",
+    "choices": [
+      "Dessin",
+      "Analyse spatiale",
+      "Nettoyage"
+    ],
+    "answerIndex": 1,
+    "lv": 4
   }
 ]
