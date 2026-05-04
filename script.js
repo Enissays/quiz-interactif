@@ -74,6 +74,7 @@ const LOCALES = {
     levelEasy: "Facile",
     levelMedium: "Moyen",
     levelHard: "Avancé",
+    levelExperienced: "Expérimenté",
     timeLabel: "Temps par question (secondes)",
     langLabel: "Langue",
     langFrench: "Français",
@@ -116,6 +117,7 @@ const LOCALES = {
     levelEasy: "سهل",
     levelMedium: "متوسط",
     levelHard: "متقدم",
+    levelExperienced: "متمرس",
     timeLabel: "الوقت لكل سؤال (بالثواني)",
     langLabel: "اللغة",
     langFrench: "الفرنسية",
@@ -211,9 +213,11 @@ function updateLocaleSettings(locale) {
   const levelEasyOption = levelSelect?.querySelector('option[value="1"]');
   const levelMediumOption = levelSelect?.querySelector('option[value="2"]');
   const levelHardOption = levelSelect?.querySelector('option[value="3"]');
+  const levelExperiencedOption = levelSelect?.querySelector('option[value="4"]');
   if (levelEasyOption) levelEasyOption.textContent = LOCALES[locale].levelEasy;
   if (levelMediumOption) levelMediumOption.textContent = LOCALES[locale].levelMedium;
   if (levelHardOption) levelHardOption.textContent = LOCALES[locale].levelHard;
+  if (levelExperiencedOption) levelExperiencedOption.textContent = LOCALES[locale].levelExperienced;
 
   const timeLabelEl = document.querySelector('label[for="time-input"]');
   if (timeLabelEl) timeLabelEl.textContent = LOCALES[locale].timeLabel;
@@ -308,8 +312,8 @@ async function loadQuestions(locale = currentLocale) {
       throw new Error(`Format invalide pour la question ${i + 1}`);
     }
 
-    if (![1, 2, 3].includes(q.lv)) {
-      throw new Error(`Le niveau (lv) de la question ${i + 1} doit etre 1, 2 ou 3`);
+    if (![1, 2, 3, 4].includes(q.lv)) {
+      throw new Error(`Le niveau (lv) de la question ${i + 1} doit etre 1, 2, 3 ou 4`);
     }
   });
 
@@ -350,13 +354,14 @@ function updateStreakLabel() {
 
 function getSelectedLevel() {
   const parsedLevel = Number.parseInt(levelSelect.value, 10);
-  return [1, 2, 3].includes(parsedLevel) ? parsedLevel : 2;
+  return [1, 2, 3, 4].includes(parsedLevel) ? parsedLevel : 2;
 }
 
 function getStreakTarget(level) {
   if (level === 1) return 3;
   if (level === 2) return 5;
-  return 7;
+  if (level === 3) return 7;
+  return 9;
 }
 
 function shuffleArray(items) {
